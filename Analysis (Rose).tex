@@ -1,0 +1,82 @@
+\documentclass{book}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+ \usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{chngcntr}
+\makeatletter
+\def\th@plain{%
+  \thm@notefont{}% same as heading font
+  \itshape % body font
+}
+\def\th@definition{%
+  \thm@notefont{}% same as heading font
+  \normalfont % body font
+}
+\makeatother
+
+\usepackage{notes2bib}
+\usepackage{imakeidx}
+\makeindex
+\title{Elementray Analysis Notes}
+\author{Yuxun LU}
+\date{February 2017}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{lemma}[definition]{Lemma}
+\begin{document}
+\maketitle
+\section*{Preface}
+This is the note of ``Elementary Analysis" (written by Kenneth A. Ross). The main content is the definitions, theorems corollaries and lemmas (some of them may appear in the exercises). This note is written by Yuxun LU from NAIST and under the Creative Commons License.
+\tableofcontents
+\mainmatter
+\chapter{Introduction}
+\section{The Set of Natural Numbers}
+
+\begin{definition}[The Set of Natural Numbers]
+The set of all positive integers is denoted by $\mathbb{N}$. Each positive integer $n$ has a successor.
+\\ Properties (\textit{Peano Axioms} or \textit{Peano Postulates}):
+\\ \textbf{N1.} 1 belongs to $\mathbb{N}$.
+\\ \textbf{N2.} If $n$ belongs to $\mathbb{N}$, then its successor $n+1$ belongs to $\mathbb{N}$.
+\\ \textbf{N3.} 1 is not the successor of any element in $\mathbb{N}$.
+\\ \textbf{N4.} If $n$ and $m$ in $\mathbb{N}$ have the same successor, then $n=m$.
+\\ \textbf{N5.} A subset of $\mathbb{N}$ which contains 1, and which contains $n+1$ whenever it contains $n$, must equal $\mathbb{N}$.
+\end{definition}
+\begin{definition}[Mathematical Induction]
+Let $P_1, P_2, P_3, ...$ be a list of statements or propositions that may or may not be true. The principle of mathematical induction asserts all the statements $P_1, P_2, P_3, ...$ are true provided
+\\ \textbf{I1} $P_1$ is true,
+\\ \textbf{I2} $P_{n+1}$ is true whenever $P_n$ is true.
+\end{definition}
+\section{The Set of Rational Numbers}
+\begin{definition}[algebraic number]
+A number is called an \textit{algebraic number} if it satisfies a polynomial equation
+\begin{equation*}
+    c_nx^n + c_{n-1}x^{n-1} + ... + c_1x + c_0 = 0
+\end{equation*}
+where the coefficients $c_0, c_1, ..., c_n$ are integers, $c_n \neq 0$ and $n \geq 1$.
+\end{definition}
+\begin{theorem}[Rational Zeros Theorem]
+Suppose $c_0, c_1,...,c_n$ are integers and $r$ is a rational number satisfying the polynomial equation
+\begin{equation}
+    c_nx^n + c_{n-1}x^{n-1} + ... + c_1x + c_0 = 0
+\end{equation}
+where $n \geq 1, c_n \neq 0$ and $c_0 \neq 0$. Let $r = \frac{c}{d}$ where $c,d$ are integers having no common factors and $d \neq 0$. Then $c$ divides $c_0$ and $d$ divides $c_n$.
+\end{theorem}
+\begin{corollary}
+Consider the polynomial equation
+\begin{equation*}
+    x^n + c_{n-1}x^{n-1} + ... + c_1x + c_0 = 0
+\end{equation*}
+where the coefficients $c_0, c_1, ..., c_{n-1}$ are integers and $c_0 \neq 0$. Any rational solution of this equation must be an integer that divides $c_0$.
+\end{corollary}
+\bibliographystyle{unsrt}
+% \bibliography{sample}
+
+\end{document}
