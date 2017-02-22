@@ -22,7 +22,7 @@
 \usepackage{notes2bib}
 \usepackage{imakeidx}
 \makeindex
-\title{Elementray Analysis Notes}
+\title{Elementary Analysis Notes}
 \author{Yuxun LU}
 \date{February 2017}
 
@@ -76,6 +76,105 @@ Consider the polynomial equation
 \end{equation*}
 where the coefficients $c_0, c_1, ..., c_{n-1}$ are integers and $c_0 \neq 0$. Any rational solution of this equation must be an integer that divides $c_0$.
 \end{corollary}
+\section{The Set of Real Numbers}
+The basic algebraic operations in $\mathbb{Q}$ are addition and multiplication. Given a pair $a,b$ of rational numbers, the sum $a+b$ and the product $ab$ also represent rational numbers. Moreover, the following properties hold.
+\\ \textbf{A1.} $a+(b+c)=(a+b)+c$ for all $a,b,c$. (\textit{associative laws})
+\\ \textbf{A2.} $a+b=b+a$ for all $a,b$. (\textit{commutative laws})
+\\ \textbf{A3.} $a+0=a$ for all $a$.
+\\ \textbf{A4.} For each $a$, there is anelement $-a$ s.t. $a+(-a)=0$.
+\\ \textbf{M1.} $a(bc)=(ab)c$ for all $a,b,c$. (\textit{associative laws})
+\\ \textbf{M2.} $ab = ba$ for all $a,b$. (\textit{commutative laws})
+\\ \textbf{M3.} $a \cdot 1 = a $ for all $a$.
+\\ \textbf{M4.} Fro each $a \neq 0$, there is an element $a^{-1}$ s.t. $aa^{-1}=1$.
+\\ \textbf{DL.} $a(b+c)=ab+ac$ for all $a,b,c$. (\textit{distributive law})
+\\ A system that has more than one element and satisfies these nine properties are called a \textit{field}.
+\\ The set $\mathbb{Q}$ also has an order strtucture $\leq$ satisfying
+\\ \textbf{O1.} Given $a$ and $b$, either $a \leq b$ or $b \leq a$.
+\\ \textbf{O2.} If $a \leq b$ and $b \leq a$, then $a=b$.
+\\ \textbf{O3.} If $a \leq b$ and $b \leq c$, then $a \leq c$. (\textit{transitive law})
+\\ \textbf{O4.} If $a \leq b$, then $a+c \leq b+c$.
+\\ \textbf{O5.} If $a \leq b$ and $0 \leq c$ then $ac \leq bc$.
+Property O3 is called the transitive law. This is the characteristic property of an ordering. A field with an ordering satisfying properties O1 through O5 is called an \textit{ordered field}.
+\\ Real numbers, i.e., elements of $\mathbb{R}$, can be added together and multiplied together. That is, given real numbers $a$ and $b$, the sum $a+b$ and the product $ab$ also represent real numbers. Moreover, these operations satisfy the field properties A1 through A4, M1 through M4, and DL. The set $\mathbb{R}$ also has an order structure $\leq$ that satisfies properties O1 through O5. Thus, like $\mathbb{Q}, \mathbb{R}$ is an ordered field.
+\begin{theorem}
+The following are consequences of the field properties:
+\\ \textbf{(i)} $a+c=b+c$ implies $a=b$;
+\\ \textbf{(ii)} $a \cdot 0 = 0$ for all $a$;
+\\ \textbf{(iii)} $(-a)b=-ab$ for all $a,b$;
+\\ \textbf{(iv)} $(-a)(-b)=ab$ for all $a,b$;
+\\ \textbf{(v)} $ac=bc$ and $c \neq 0$ imply $a=b$;
+\\ \textbf{(vi)} $ab=0$ implies either $a=0$ or $b=0$ for $a,b,c \in \mathbb{R}$.
+\end{theorem}
+\begin{theorem}
+The following are consequences of the properties of an ordered field:
+\\ \textbf{(i)} If $a \leq b$, then $\-b \leq -a$;
+\\ \textbf{(ii)} If $a \leq b$ and $c \leq 0$, then $bc \leq ac$;
+\\ \textbf{(iii)} If $0 \leq a$ and $0 \leq b$, then $0 \leq ab$;
+\\ \textbf{(iv)} $0 \leq a^2$ for all $a$;
+\\ \textbf{(v)} $0 < 1$;
+\\ \textbf{(vi)} If $0 < a$, then $0 < a^{-1}$;
+\\\ \textbf{(vii)} If $0 < a < b$, then $0 < b^{-1} < a^{-1}$; for all $a,b,c \in \mathbb{R}$.
+\\ Note $a<b$ means $a \leq b$ and $a \neq b$.
+\end{theorem}
+\begin{definition}[Absolute Value]
+We define $|a| = a$ if $a \geq 0$ and $|a| = -a$ if $a \leq 0$.
+\\ $|a|$ is called the \textit{absolute value} of $a$.
+\end{definition}
+\begin{definition}[the Distance]
+For numbers $a$ and $b$ we define dist($a,b$) = $|a-b|$; dist($a,b$) represents the \textit{distance} between $a$ and $b$.
+\end{definition}
+\begin{theorem}
+Basic Properties of the Absolute Value
+\\ \textbf{(i)} $|a| \geq 0$ for all $a \in \mathbb{R}$.
+\\ \textbf{(ii)} $|ab| = |a| \cdot |b|$ for all $a,b \in \mathbb{R}$.
+\\ \textbf{(iii)} $|a+b| \leq |a| + |b|$ for all $a,b \in \mathbb{R}$.
+\end{theorem}
+\begin{corollary}
+dist($a,c$) $\leq$ dist($a,b$) + dist($b,c$) for all $a,b,c \in \mathbb{R}$.
+\end{corollary}
+\begin{theorem}[Triangle Inequality]
+$|a+b| \leq |a| + |b|$ for all $a,b$.
+\end{theorem}
+\section{The Completeness Axiom}
+\begin{definition}
+Let $S$ be a nonempty subset of $\mathbb{R}$.
+\\ \textbf{(a)} If $S$ contains a largest element $s_0$ [that is, $s_0$ belongs to $S$ and $s \leq s_0$ for all $s \in S$], then we call $s_0$ the \textit{maximum} of $S$ and written $s_0 = $ max $S$.
+\\ \textbf{(b)} If $S$ contains a smallest element, then we call the smallest element the $minimum$ of $S$ and write it as min $S$.
+\end{definition}
+\begin{definition}
+Let $S$ be a nonempty subset of $\mathbb{R}$.
+\\ \textbf{(a)} If a real number $M$ satsifies $s \leq M$ for all $s \in S$, then $M$ is called an \textit{upper bound} of $S$ and the set $S$ is said to be \textit{bounded above}.
+\\ \textbf{(b)} If a real number $m$ satisfies $m \leq s$ for all $s \in S$, then $m$ is called a \textit{lower bound} of $S$ and the set $S$ is said to be \textit{bounded below}.
+\\ \textbf{(c)} The set $S$ is said to be \textit{bounded} if it is bounded above and bounded below. Thus $S$ is bounded if there exist real numbers $m$ and $M$ s.t. $S \subseteq [m, M]$.
+\end{definition}
+\begin{definition}
+Let $S$ be a nonempty subset of $\mathbb{R}$.
+\\ \textbf{(a)} If $S$ is bounded above and $S$ has a least upper bound, then we will call it the \textit{supremum} of $S$ and denote it by sup $S$.
+\\ \textbf{(b)} If $S$ is bounded below and $S$ has a greatest lower bound, then we will call it the \textit{infimum} of $S$ and denote it by inf $S$.
+\end{definition}
+Note that, unlike max $S$ and min $S$, sup $S$ and inf $S$ need not belong to $S$ and a set can have at most one maximum, minimum, supremum and infimum.
+\\ If $S$ is bounded above, then $M$ = sup $S$ iff (i) $s \leq M$ for all $s \in S$ and (ii) whenever $M_1 < M$, there exists $s_1 \in S$ s.t. $s_1 > M_1$.
+\begin{theorem}[Completeness Axiom]
+Every nonempty subset $S$ of $\mathbb{R}$ that is bounded above has a least upper bound. In other words, sup $S$ exists and is a real number.
+\end{theorem}
+The completeness axiom does not hold for $\mathbb{Q}$.
+\begin{corollary}
+Every nonempty subset $S$ of $\mathbb{R}$ that is bounded below has a greatest lower bound inf $S$.
+\end{corollary}
+\begin{theorem}[Archimedean Property]
+If $a > 0$ and $b > 0$, then for some positive integer $n$, we have $na > b$.
+\end{theorem}
+\begin{theorem}
+Denseness of $\mathbb{Q}$.
+\\ If $a,b \in \mathbb{R}$ and $a < b$, then there is a rational $r \in \mathbb{Q}$ s.t. $a < r < b$.
+\end{theorem}
+\section{The Symbols $+\infty$ and $-\infty$}
+Let $S$ be any nonempty subset of $\mathbb{R}$. The symbols sup $S$ and inf $S$ always make sense. If $S$ is bounded above, then sup $S$ is a real number; otherwise sup $S$ = $+\infty$. If $S$ is bounded below, then inf $S$ is a real number; otherwise inf $S$ = $-\infty$. Moreover, we have inf $S$ $\leq$ sup $S$.
+
+$[a, \infty)$ and $(-\infty, b]$ are called \textit{closed intervals} while $[a, b]$ is called \textit{\textbf{a} closed interval}.
+
+Let $S$ be any nonempty subset of $\mathbb{R}$. The symbols $sup S$ and $inf S$ always make sense. If $S$ is bounded above, then $sup S$ is a real number; otherwise $supS=+\infty$. If $S$ is bounded below, then $inf S$ is a real number; otherwise $inf S= -\infty$. Moreover, we have $inf S \leq sup S$.
+
 \bibliographystyle{unsrt}
 % \bibliography{sample}
 

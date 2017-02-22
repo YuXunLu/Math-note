@@ -1,8 +1,13 @@
-\documentclass{article}
+\documentclass{book}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
- 
+ \usepackage[utf8]{inputenc}
+\usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{chngcntr}
 \makeatletter
 \def\th@plain{%
   \thm@notefont{}% same as heading font
@@ -13,28 +18,241 @@
   \normalfont % body font
 }
 \makeatother
+
 \usepackage{notes2bib}
-
-
-\title{notes2bib - Integrating notes into the bibliography}
-\author{ShareLaTeX Templates}
-\date{March 2014}
+\usepackage{imakeidx}
+\makeindex
+\title{Linear Algebra Notes}
+\author{Yuxun LU}
+\date{February 2017}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
-
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{lemma}[definition]{Lemma}
 \begin{document}
-
 \maketitle
-
-This is a very basic example of using \texttt{notes2bib} package in order to put notes together with bibliography. 
-Let us begin from citation of \LaTeX\ related references \cite{latexcompanion,knuthwebsite}. Next, is a very simple example of a bibliography note \bibnote{Note for the first example}. Afterward we can referee to famous Einstein's paper \cite{einstein}. Finally, there is next note \bibnote{Note for the second example} inside text. 
-
+\section*{Preface}
+This is the note of ``Linear Algebra" (written by Serge Lang). The main content is the definitions, theorems corollaries and lemmas (some of them may appear in the exercises). This note is written by Yuxun LU from NAIST and under the Creative Commons License.
+\tableofcontents
+\mainmatter
+\chapter{Vector Spaces}
+If $S'$ is a subset of $S$, but $S' \neq S$, then we shall say that $S'$ is a \textbf{proper} subset of $S$. Thus $\mathbf{C}$ is a subset of $\mathbf{C}$, but $\mathbf{R}$ is a proper subset of $\mathbf{C}$.
+\section{Definitions}
 \begin{definition}[Field]
-A set is called field if and only if.
+Let $K$ be a subset of the complex numbers $\mathbb{C}$. We shall say that $K$ is a \textbf{field} if it satisfies the following conditions:
+\\(a) If $x,y$ are elements of $K$, then $x+y$ and $xy$ are also elements of $K$.
+\\(b) If $x \in K$, then $-x$ is also an element of $K$. If turthermore $x \neq 0$, then $x^{-1}$ is an element of $K$.
+\\(c) The elements 0 and 1 are elements of $K$.
+\end{definition}
+\textbf{Q}, \textbf{R} and \textbf{C} are fields. \textbf{Z} is not a field. The essential thing about a field is that it is a set of elements which can be added and multiplied, in such a way that addition and multiplication satisfy the ordinary rules of arithmetic, and in such a way that one can divide by non-zero elements.
+
+Let $K,L$ be fields, and suppose that $K \subset L$. Then we shall say that $K$ is a \textbf{subfield} of $L$.
+
+A \textbf{vector space} $V$ \textbf{over the field} $K$ is a set of objects which can be added and multiplied by elements of $K$, in such a way that the sum of two elements of $V$ is again an element of $V$, the product of an element of $V$ by an element of $K$ is an element of $V$, and the following properties are satisfied:
+\\ \textbf{VS 1.} Given elements $u,v,w$ of $V$, we have 
+\begin{equation*}
+    (u + v) + w = u + (v + w).
+\end{equation*}
+\\ \textbf{VS 2.} There is an element of $V$, denoted by $O$ s.t.
+\begin{equation*}
+    O + u = u + O = u
+\end{equation*}
+for all elements $u$ of $V$.
+\\ \textbf{VS 3.} Given an element $u$ of $V$, there exists an element $-u$ in $V$ s.t.
+\begin{equation*}
+    u + (-u) = O
+\end{equation*}
+\\ \textbf{VS 4.} For all elements $u,v$ of $V$, we have
+\begin{equation*}
+    u + v = v + u
+\end{equation*}
+\\ \textbf{VS 5.} If $c$ is a number, then $c(u+v)=cu+cv$.
+\\ \textbf{VS 6.} If $a,b$ are two numbers, then $(a+b)v = av + bv$.
+\\ \textbf{VS 7.} If $a,b$ are two numbers, then $(ab)v = a(bv)$.
+\\ \textbf{VS 8.} For all elements $u$ of $V$, we have $1 \cdot u = u$ ($1$ here is the number one).
+\begin{definition}
+    Let $V$ = $K^n$ be the set of $n$-tuples of elements of $K$. Let $A = (a_1, ..., a_n)$ and $B = (b_1, ..., b_n)$ be eleemnts of $K^n$. We call $a_1, ..., a_n$ the \textbf{components}, or \textbf{coordinates} of $A$. We define
+    \begin{equation*}
+        A + B = (a_1 + b_1, ..., a_n + b_n)
+    \end{equation*}
+    If $c \in K$ we define
+    \begin{equation*}
+        cA = (ca_1, ..., ca_n)
+    \end{equation*}
+\end{definition}
+\begin{definition}[Subspace]
+    Let $V$ be a vector space, and let $W$ be a subset of $V$. We define $W$ to be a \textbf{subspace} if $W$ satisfies the following conditions:
+    \\(i) If $v,w$ are elements of $W$, their sum $v + w$ is also an element of $W$.
+    \\(ii) If $v$ is an element of $W$ and $c$ a number, then $cv$ is an element of $W$.
+    \\(iii) The element $O$ of $V$ is also an element of $W$.
+\end{definition}
+Then $W$ itself is a vector space.
+\begin{definition}[Linear Combinations]
+    Let $V$ be an arbitrary vector space, and let $v_1, ..., v_n$ be elements of $V$. Let $x_1, ..., x_n$ be numbers. An expression of type
+    \begin{equation*}
+        x_1v_1 + ... + x_nv_n
+    \end{equation*}
+    is called a \textbf{linear combination} of $v_1, ..., v_n$.
+\end{definition}
+Let $W$ be the set of all linear combinations of $v_1,...,v_n$. Then $W$ is a subspace of $V$. $W$ is called the subspace \textbf{generated} by $v_1,...,v_n$. If $W=V$, we say $v_1,...,v_n$ generate $V$.
+\begin{definition}[Dot product]
+    Let $V = K^n$. Let $A$ and $B \in K^n$, $A=(a_1,..,a_n)$ and $B=(b_1,...,b_n)$. We define the \textbf{dot product} or \textbf{scalar product}
+    \begin{equation*}
+        A \cdot B = a_1b_1 + ... + a_nb_n
+    \end{equation*}
+    And it's easy to verify the following properties.
+    \\ \textbf{SP1 1.} We have $A \cdot B = B \cdot A$.
+    \\ \textbf{SP 2.} If $A,B,C$ are three vectors, then
+    \begin{equation*}
+        A \cdot (B+C) = A \cdot B + A \cdot C = (B + C) \cdot A.
+    \end{equation*}
+    \\ \textbf{SP 3.} If $x \in K$ then
+    \\ $(xA)\cdot B = x(A\cdot B)$ and $A \cdot (xB) = x(A \cdot B)$.
+\end{definition}
+\begin{definition}[Function Spaces]
+    Let $S$ be a set and $K$ a field. By a \textbf{function} of $S$ into $K$ we shall mean an association which to each element of $S$ associates a unique element of $K$. Thus if $f$ is a function of $S$ into $K$, we express this by the symbols
+    \begin{equation*}
+        f: S \rightarrow K.
+    \end{equation*}
+    We also say that $f$ is a $K$\textbf{-valued} function. Let $V$ be the set of all functions of $S$ into $K$. If $f,g$ are two such functions, then we can form their sum $f+g$. It is the function whose value at an element $x$ of $S$ is $f(x) + g(x)$. We write
+    \begin{equation*}
+        (f+g)(x) = f(x) + g(x).
+    \end{equation*}
+    If $c \in K$, then we define $cf$ to be the function s.t.
+    \begin{equation*}
+        (cf)(x) = cf(x)
+    \end{equation*}
+\end{definition}
+\begin{definition}[Sum of Two Spaces]
+    Let $U, W$ be subspaces of a vector space $V$. By
+    \begin{equation*}
+        U + W
+    \end{equation*}
+    we denote the set of all elements $u +w $ with $u \in U$ and $w \in W$. $U + W$ is a subspace of $V$, generated by $U$ and $W$ and called the \textbf{sum} of $U$ and $W$.
+\end{definition}
+\section{Bases}
+\begin{definition}[Linearly Dependent]
+    Let $V$ be a vector space over the field $K$, and let $v_1,...,v_n$ be elements of $V$. We shall say that $v_1,...,v_n$ are \textbf{linearly dependent} over $K$ if there exist elements $a_1,...,a_n$ in $K$ not all equal to 0 s.t.
+    \begin{equation*}
+        a_1 v_1 + ... + a_n v_n = O.
+    \end{equation*}
+    If there do not exist such numbers, then we say that $v_1,...,v_n$ are \textbf{linearly independent}. In other words, vectors $v_1, ..., v_n$ are linearly independent iif the following condition is satisfied:
+    \\ Whenever $a_1,...,a_n$ are numbers s.t.
+    \begin{equation*}
+        a_1 v_1 + ... + a_n v_n = O
+    \end{equation*}
+    then $a_i = 0$ for all $i=1,...,n$.
+\end{definition}
+\begin{definition}[Basis]
+    If elements $v_1,...,v_n$ of $V$ generate $V$ and in addition are linearly independent, then $\{v_1,...,v_n\}$ is called a \textbf{basis} of $V$. We shall also say that the elements $v_1,...,v_n$ \textbf{constitute} or \textbf{form} a basis of $V$.
+\end{definition}
+\begin{theorem}
+Let $V$ be a vector space. Let $v_1, ..., v_n$ be linearly independent elements of $V$. Let $x_1,...,x_n$ and $y_1,...,y_n$ be numbers. Suppose that we have 
+\begin{equation*}
+    x_1v_1 + ... + x_nv_n = y_1v_1 + ... + y_n v_n.
+\end{equation*}
+Then $x_i = y_i$ for $i = 1,...,n$.
+\end{theorem}
+\begin{definition}[coordinates]
+    Let $V$ be a vector space, and let $\{v_1, ..., v_n\}$ be a basis of $V$. The elements of $V$ can be represented by $n$-tuples relative to this basis, as follows. If an element $v$ of $V$ is written as a linear combination
+    \begin{equation*}
+        v = x_1 v_1 + ... + x_n v_n
+    \end{equation*}
+    We call $\{x_1, ..., x_n\}$ the \textbf{coordinates} of $v$ w.r.t our basis. We say the $n$-tuple $X = (x_1,...,x_n)$ is the \textbf{coordinate vector} of $v$ w.r.t the basis $\{v_1, ..., v_n\}$.
+\end{definition}
+\begin{definition}
+    Let $\{v_1, ..., v_n\}$ be a set of elements of a vector space $V$. Let $r$ be a positive integer $r \leq n$. We shall say that $\{v_1, ..., v_r\}$ is a \textbf{maximal} subset of linear independent elements if $v_1,...,v_r$ are linearly independent and if in addition, given any $v_i$ with $i > r$, the elements $v_1,...,v_r,v_i$ are linear dependent.
+\end{definition}
+\begin{theorem}
+Let $\{v_1,...,v_n\}$ be a set of generators of a vector space $V$. Let $\{v_1,...,v_r\}$ be a maximal subset of linearly independent elements. Then $\{v_1,...,v_r\}$ is a basis of $V$.
+\end{theorem}
+\section{Dimension of a Vector Space}
+\begin{theorem}
+Let $V$ be a vector space over the field $K$. Let $\{v_1,...,v_m\}$ be a basis of $V$ over $K$. Let $w_1,...,w_n$ be elements of $V$ and assume that $n > m$. Then $w_1,...,w_n$ are linearly dependent.
+\end{theorem}
+\begin{theorem}
+Let $V$ be a vector space and suppose that one basis has $n$ elements, and another basis has $m$ elements. Then $m=n$.
+\end{theorem}
+We shall say that $n$ is the \textbf{dimension} of $V$. A vector space which has a basis consisting of a finite number of elements, or the zero vector space, is called \textbf{finite dimensional}. Other vector spaces are called \textbf{infinite dimensional}.
+\begin{corollary}
+Let $K$ be a field. Then $K$ is a vector space over itself, and it is of dimension 1.
+\end{corollary}
+\begin{definition}
+    Let $V$ be a vector space. A subspace of dimension 1 is called a \textbf{line} in $V$. A subspace of dimension 2 is called a \textbf{plane} in $V$.
+\end{definition}
+\begin{definition}
+    Let $v_1,...v_n$ be linearly independent elements of a vector space $V$. We say that they form a \textbf{maximal set of linearly independent elements} of $V$ if given any element $w$ of $V$, the elements $w, v_1, ..., v_n$ are linearly dependent.
+\end{definition}
+\begin{theorem}
+Let $V$ be a vector space, and $\{v_1,...,v_n\}$ a maximal set of linearly independent elements of $V$. Then $\{v_1,...,v_n\}$ is a basis of $V$.
+\end{theorem}
+\begin{theorem}
+Let $V$ be a vector space of dimension $n$, and let $v_1,...,v_n$ be linearly independent elements of $V$. Then $v_1, ..., v_n$ constitute a basis of $V$.
+\end{theorem}
+\begin{corollary}
+Let $V$ be a vector space and let $W$ be a subspace. If dim $W$ = dim $V$ then $V=W$.
+\end{corollary}
+\begin{corollary}
+Let $V$ be a vector space of dimension $n$. Let $r$ be a positive integer with $r<n$, and let $v_1, ..., v_r$ be linearly independent elements of $V$. Then one can find elements $v_{r+1},...,v_n$ s.t.
+\begin{equation*}
+    \{v_1,...,v_n\}
+\end{equation*}
+is a basis of $V$.
+\end{corollary}
+\begin{theorem}
+Let $V$ be a vector space having a basis consisting of $n$ elements. Let $W$ be a subspace which does not consist of $O$ alone. Then $W$ has a basis, and the dimension of $W$ is less than or equal to $n$.
+\end{theorem}
+\section{Sum and Direct Sums}
+\begin{definition}[Sum of Two Subspaces]
+    Let $V$ be a vector space over the field $K$. Let $U,W$ be subspaces of $V$. We define the \textbf{sum} of $U$ and $W$ to be the subset of $V$ consisting of all sums $u+w$ with $u \in U$ and $w \in W$. We denote this sum by $U+W$. It is a subspace of $V$.
+\end{definition}
+$V$ is a \textbf{direct sum} of $U$ and $W$ if for every element $v \in V$ there exist \textit{unique} elements $u \in U$ and $w \in W$ s.t. $v = u + w$.
+\begin{theorem}
+Let $V$ be a vector space over the field $K$, and let $U,W$ be subspaces. If $U+W=V$ and if $U \cap W = \{O\}$, then $V$ is the direct sum of $U$ and $W$.
+\end{theorem}
+When $V$ is the direct sum of subspaces $U,W$ we write
+\begin{equation*}
+    V = U \oplus W
+\end{equation*}
+\begin{theorem}
+Let $V$ be a finite dimensional vector space over the field $K$. Let $W$ be a subspace. Then there exists a subspace $U$ s.t. $V$ is the direct sum of $W$ and $U$.
+\end{theorem}
+\begin{theorem}
+If $V$ is a finite dimensional vector space over $K$, and is the direct sum of subspaces $U,W$ then
+\begin{equation*}
+    dim V = dim U + dim W
+\end{equation*}
+\end{theorem}
+\begin{definition}[Direct Product]
+    Suppose $U,W$ are arbitrary vector spaces over the field $K$. Let $U \times W$ be the set of all pairs $(u,w)$ that $u \in U$ and $w \in W$. The addition and multiplication are defined as follows.
+    \\ $(u_1, w_1) + (u_2, w_2) = (u_1 + u_2, w_1 + w_2)$.
+    \\ $c(u_1, w_1) = (cu_1, cw_1); c \in K$.
+    then $U \times W$ is a vector space, called the \textbf{direct product} of $U$ and $W$.
+    \begin{equation*}
+        dim(U \times W) = dim U + dim W 
+    \end{equation*}
+\end{definition}
+$V$ is the \textbf{direct sum}
+\begin{equation*}
+    V = \oplus_{i=1}^n V_i = V_1 \oplus ... \oplus V_n
+\end{equation*}
+if every $v \in V$ has a unique expression as a sum
+\begin{equation*}
+    v = v_1 + ... + v_n; (v_i \in V_i)
+\end{equation*}
+Similarly, let $W_1, ..., W_n$ be vector spaces. We define their direct product
+\begin{equation*}
+    \prod_{i=1}^n W_i = W_1 \times ... \times W_n
+\end{equation*}
+be the set of $n$-tuples $(w_1,...,w_n$ with $w_i \in W_i$.
+\chapter{Matrices}
+\begin{definition}[non-degeneracy]
+    If $A \in K^n$ and if $A \cdot X = 0$ for all $X \in K^n$ then $A = O$.
 \end{definition}
 
 \bibliographystyle{unsrt}
-\bibliography{sample}
+% \bibliography{sample}
 
 \end{document}
