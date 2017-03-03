@@ -8,6 +8,13 @@
 \usepackage{natbib}
 \usepackage{graphicx}
 \usepackage{chngcntr}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
 \makeatletter
 \def\th@plain{%
   \thm@notefont{}% same as heading font
@@ -55,7 +62,7 @@ Let $P_1, P_2, P_3, ...$ be a list of statements or propositions that may or may
 \\ \textbf{I2} $P_{n+1}$ is true whenever $P_n$ is true.
 \end{definition}
 \section{The Set of Rational Numbers}
-\begin{definition}[algebraic number]
+\begin{definition}[Algebraic Number]
 A number is called an \textit{algebraic number} if it satisfies a polynomial equation
 \begin{equation*}
     c_nx^n + c_{n-1}x^{n-1} + ... + c_1x + c_0 = 0
@@ -120,7 +127,7 @@ The following are consequences of the properties of an ordered field:
 We define $|a| = a$ if $a \geq 0$ and $|a| = -a$ if $a \leq 0$.
 \\ $|a|$ is called the \textit{absolute value} of $a$.
 \end{definition}
-\begin{definition}[the Distance]
+\begin{definition}[The Distance]
 For numbers $a$ and $b$ we define dist($a,b$) = $|a-b|$; dist($a,b$) represents the \textit{distance} between $a$ and $b$.
 \end{definition}
 \begin{theorem}
@@ -135,6 +142,10 @@ dist($a,c$) $\leq$ dist($a,b$) + dist($b,c$) for all $a,b,c \in \mathbb{R}$.
 \begin{theorem}[Triangle Inequality]
 $|a+b| \leq |a| + |b|$ for all $a,b$.
 \end{theorem}
+\begin{corollary}Triangle Inequality - Corollary
+\\ $|a|-|b| \leq |a-b|$ and $|b|-|a| \leq |a-b|$.
+\\ This corollary came from Exercise 3.5(b) and  \href{http://math.stackexchange.com/questions/1960593/double-absolute-value-proof-a-b-le-a-b}{here is the proof}.
+\end{corollary}
 \section{The Completeness Axiom}
 \begin{definition}
 Let $S$ be a nonempty subset of $\mathbb{R}$.
@@ -174,8 +185,61 @@ Let $S$ be any nonempty subset of $\mathbb{R}$. The symbols sup $S$ and inf $S$ 
 $[a, \infty)$ and $(-\infty, b]$ are called \textit{closed intervals} while $[a, b]$ is called \textit{\textbf{a} closed interval}.
 
 Let $S$ be any nonempty subset of $\mathbb{R}$. The symbols $sup S$ and $inf S$ always make sense. If $S$ is bounded above, then $sup S$ is a real number; otherwise $supS=+\infty$. If $S$ is bounded below, then $inf S$ is a real number; otherwise $inf S= -\infty$. Moreover, we have $inf S \leq sup S$.
-
+\section{*A Development of R}
+\begin{definition}[Subsets of Q]
+Subsets $\alpha$ of $\mathbb{Q}$ having the form $\{r \in \mathbb{Q}:r < a\}$ satisfy these properties:
+\\ \textbf{(i)} $\alpha \neq \mathbb{Q}$ and $\alpha$ is not empty.
+\\ \textbf{(ii)} If $r \in \alpha, s \in \mathbb{Q}$ and $s < r$, then $s \in \alpha$.
+\\ \textbf{(iii)} $\alpha$ contains no largest rational.
+\end{definition}
+\begin{definition} Properties implied by Def. 1.6.1.
+\\$a \leq b$ iif $\{r \in \mathbb{Q}:r<a\} \subseteq \{r \in \mathbb{Q}:r < b\}$.
+\\ $a = b$ iif $\{r \in \mathbb{Q}: r < a\} = \{r \in \mathbb{Q}: r < b\}$.
+\end{definition}
+\begin{definition}
+Every subset $\alpha$ of $\mathbb{Q}$ that satisfies (i)-(iii) has the form $\{r \in \mathbb{Q}: r < a\}$ for some $a \in \mathbb{R}$; in fact, $a = \sup \alpha$. Subsets $\alpha$ of $\mathbb{Q}$ satisfying (i)-(iii) are called \textit{Dedekind cuts}.
+\end{definition}
 \bibliographystyle{unsrt}
 % \bibliography{sample}
+\begin{definition}[The Definition of R]
+The set $\mathbb{R}$ of real numbers is \textit{defined} as the space of all Dedekind cuts. Thus elements of $\mathbb{R}$ are \textit{defined} as certain subsets of $\mathbb{Q}$. The rational numbers are identified with certain Dedekind cuts in the natural way: each rational $s$ corresponds to the Dedekind cut $s^* = \{r \in \mathbb{Q}: r < s\}$. 
+\end{definition}
+\chapter{Sequences}
+\section{Limits of Sequences}
+\begin{definition}[Sequence]
+A \textit{sequence} is a function whose domain is a set of the form $\{n \in \mathbb{Z}: n \geq m\}$; $m$ is usually $1$ or $0$. Thus, a sequence is a function that has a specified value for each integer $n \geq m$.
+\end{definition}
+\begin{definition}[Limit of A Sequence]
+A sequence ($s_n$) of real numbers is said to converge to the real number $s$ provided that:
+\\ \begin{center} for each $\epsilon > 0$ there exists a number $N$ s.t. $n > \mathbb{N}$ implies $|s_n - s | < \epsilon$. \end{center}
+The number $s$ is called the \textit{limit} of the sequence ($s_n$). A sequence that does not converge to some real number is said to \textit{diverge}.
+\end{definition}
+\begin{theorem}[Squeeze Theorem] This theorem came from Exercise 8.5(a).
+\\ Consider three sequences ($a_n$), ($b_n$), ($s_n$) s.t. $a_n \leq s_n \leq b_n$ for all $n$ and $\lim a_n = \lim b_n = s$, then $\lim s_n = s$.
+\end{theorem}
+\begin{lemma}[Exercise 8.9] Let $(s_n)$ be a sequence that converges.
+\\ If $s_n \geq a$ for all but finitely many $n$, then $\lim s_n \geq a$.
+\\ If $s_n \leq b$ for all but finitely many $n$, then $\lim s_n \leq b$.
+\\ If all but finitely many $s_n$ belong to $[a,b]$, then $\lim s_n$ belongs to $[a,b]$.
+\end{lemma}
+\section{Limit Theorems for Sequences}
+\begin{theorem}
+Convergent sequences are bounded.
+\end{theorem}
+\begin{theorem}
+If the sequence ($s_n$) converges to $s$ and $k$ is in $\mathbb{R}$, then the sequence ($ks_n$) converges to $ks$. That is, $\lim(ks_n) = k \cdot \lim s_n$.
+\end{theorem}
+\begin{theorem}
+If ($s_n$) converges to $s$ and ($t_n$) converges to $t$, then ($s_n + t_n$) converges to $s+t$. That is
+\begin{center}
+$\lim(s_n + t_n) = \lim s_n + \lim t_n$
+\end{center}
+\end{theorem}
+\begin{theorem}
+If ($s_n$) converges to $s$ and ($t_n$) converges to $t$, then ($s_n t_n$) converges to $st$. That is,
+\begin{center}
+$\lim(s_n t_n) = (\lim s_n)(\lim t_n)$
+\end{center}
+\end{theorem}
 
 \end{document}

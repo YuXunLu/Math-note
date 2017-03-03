@@ -25,7 +25,7 @@
 \title{Linear Algebra Notes}
 \author{Yuxun LU}
 \date{February 2017}
-
+\DeclareMathOperator{\Tr}{Tr}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{theorem}[definition]{Theorem}
@@ -251,7 +251,41 @@ be the set of $n$-tuples $(w_1,...,w_n$ with $w_i \in W_i$.
 \begin{definition}[non-degeneracy]
     If $A \in K^n$ and if $A \cdot X = 0$ for all $X \in K^n$ then $A = O$.
 \end{definition}
-
+\begin{definition}
+    We have the basic properties of matrices multiplication.
+    \\ \textbf{SP1.} For all $A, B$ in $K^n$, we have $A \cdot B = B \cdot A$.
+    \\ \textbf{SP2.} If $A,B,C$ are in $K^n$, we have 
+    \begin{equation*}
+        A \cdot (B+C) = A \cdot B + A \cdot C = (B + C) \cdot A
+    \end{equation*}
+    And this implies $AB=BA$.
+    \\ \textbf{SP3.} If $x \in K$ then
+    \begin{equation*}
+        (xA)\cdot B = x(A \cdot B )
+    \end{equation*}
+    and
+    \begin{equation*}
+        A\cdot (xB) = x(A \cdot B)
+    \end{equation*}
+\end{definition}
+\begin{lemma} This lemma is from Exercise 17 from Multiplication of Matrices.
+\\ Let $A$ be a $m \times n $ matrix and $B$ be a $n \times s$ matrix. Let $AB=C$. We have 
+\begin{equation*}
+    C^k = b_{1k}A^1 + ... + b_{nk}A^n
+\end{equation*}
+where $C^k$ is the $k$-th column vector in $C$, and $A^m$ is the $m$-th column vector in $A$.
+\end{lemma}
+\begin{definition}[Trace]
+    Let $A$ be an $n \times n$ matrix. Define the trace of $A$ to be the sum of the diagonal elements.
+    \begin{equation*}
+        \Tr(A) = \sum_{i=1}^n A_{ii}
+    \end{equation*}
+    and $\Tr(AB) = \Tr(BA)$.
+\end{definition}
+\begin{lemma} This lemma came from Exercise 35-39 from Multiplication of Matrices.
+\\ A square matrix $A$ is said to be \textbf{nilpotent} if $A^r = O$ for some integer $r \geq 1$. Let $A,B$ be nilpotent matrices of the same size, and assume $AB=BA$, then $AB$ and $A+B$ are nilpotent.
+\end{lemma}
+\chapter{Linear Mapping}
 \bibliographystyle{unsrt}
 % \bibliography{sample}
 
